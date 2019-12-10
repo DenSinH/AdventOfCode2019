@@ -25,7 +25,7 @@ def vaporize(pos, asteroids):
                   if gcd(dx, dy) == 1 and not dx == dy == 0]
     while True:
         for (dx, dy) in sorted(directions, key=lambda _d: atan2(*_d) % (2 * pi)):
-            for d in range(1, len(asteroids)):
+            for d in range(1, int(min(abs(len(asteroids[0]) / dx), abs(len(asteroids) / dy))) + 1 if dx * dy != 0 else max(len(asteroids), len(asteroids[0]))):
                 px, py = pos[0] + d*dx, pos[1] - d*dy
                 try:
                     if 0 <= px < len(asteroids[0]) and 0 <= py < len(asteroids):
