@@ -1,0 +1,3 @@
+# AdventOfCode2019
+
+A repo of scripts I made to solve the questions for [Advent of Code 2019](https://adventofcode.com/). I tried to make my solutions very short, so the code is not pretty, but eh, it was a bigger challenge this way...
