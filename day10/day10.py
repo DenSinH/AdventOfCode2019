@@ -8,10 +8,13 @@ def see(pos, asteroids):
         for dx in range(-pos[0], len(asteroids[0]) - pos[0]):
             if gcd(dx, dy) != 1:
                 continue
-            yield int(any(asteroids[pos[1] + d*dy][pos[0] + d*dx] == "#" for d in range(1, len(asteroids)) if 0 <= pos[1] + d*dy < len(asteroids) and 0 <= pos[0] + d*dx < len(asteroids[0])))
+            yield int(any(asteroids[pos[1] + d*dy][pos[0] + d*dx] == "#" for d in range(1, int(min(abs(len(asteroids[0]) / dx),
+                                                                                                   abs(len(asteroids) / dy))) + 1 if dx * dy != 0 else max(len(asteroids), len(asteroids[0])))
+                          if 0 <= pos[1] + d*dy < len(asteroids) and 0 <= pos[0] + d*dx < len(asteroids[0])))
 
 
-pos, p1 = (lambda asteroids: max([((x, y), sum(see((x, y), asteroids))) for y in range(len(asteroids)) for x in range(len(asteroids[0]))],
+pos, p1 = (lambda asteroids: max([((x, y), sum(see((x, y), asteroids)))
+                                  for y in range(len(asteroids)) for x in range(len(asteroids[0]))],
                                  key=lambda o: o[1]))(open("input.txt", "r").readlines())
 print("PART 1", p1)
 
